@@ -1,0 +1,42 @@
+{
+  "transactions": [
+    {
+      "id": "txn_1001",
+      "amount": 150.75,
+      "currency": "USD",
+      "status": "pending",
+      "discount": {
+        "type": "percentage",
+        "value": 10
+      }
+    },
+    {
+      "id": "txn_1002",
+      "amount": 200.00,
+      "currency": "EUR",
+      "status": "failed",
+      "fees": [
+        {
+          "type": "processing",
+          "value": 5.00
+        },
+        {
+          "type": "conversion",
+          "value": 2.50
+        }
+      ]
+    },
+    {
+      "id": "txn_1003",
+      "amount": 99.99,
+      "currency": "USD",
+      "status": "completed"
+    },
+    {
+      "id": "txn_1004",
+      "amount": "INVALID_AMOUNT",
+      "currency": "GBP",
+      "status": "pending"
+    }
+  ]
+}
