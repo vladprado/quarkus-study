@@ -1,14 +1,25 @@
 package com.vladprado.service;
 
-import jakarta.enterprise.context.RequestScoped;
+import com.vladprado.integration.JavaHttpClientPostService;
+import com.vladprado.model.cotacao.CotacaoDia;
+import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.inject.Inject;
 
-@RequestScoped
+@ApplicationScoped
 public class GreetingService {
+
+    @Inject
+    private JavaHttpClientPostService httpClientPostService;
+
     public String sayHello() {
+        exchangeRatesAPI();
         return "Hello!";
     }
 
-    private void exchangeRatesAPI() {}
+    private void exchangeRatesAPI() {
+        CotacaoDia[] cotacaoDia = httpClientPostService.buscaCotacaoDia();
+        cotacaoDia.toString();
+    }
 
     private void companyInfoAPI() {}
 
