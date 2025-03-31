@@ -1,27 +1,18 @@
 package com.vladprado.model.cotacao;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import io.quarkus.runtime.annotations.RegisterForReflection;
 import jakarta.enterprise.context.RequestScoped;
 
-import java.time.LocalDateTime;
-
-@RegisterForReflection
 @RequestScoped
 public class CotacaoDia {
     private float cotacaoCompra;
     private float cotacaoVenda;
+    private String dataHoraCotacao;
 
-    @JsonProperty("dataHoraCotacao")
-    @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss.SSS")
-    private LocalDateTime dataHoraCotacao;
-
-    public LocalDateTime getDataHoraCotacao() {
+    public String getDataHoraCotacao() {
         return dataHoraCotacao;
     }
 
-    public void setDataHoraCotacao(LocalDateTime dataHoraCotacao) {
+    public void setDataHoraCotacao(String dataHoraCotacao) {
         this.dataHoraCotacao = dataHoraCotacao;
     }
 

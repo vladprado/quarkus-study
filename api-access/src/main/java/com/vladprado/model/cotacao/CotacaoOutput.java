@@ -3,19 +3,21 @@ package com.vladprado.model.cotacao;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.enterprise.context.RequestScoped;
 
+import java.util.ArrayList;
+
 @RequestScoped
 public class CotacaoOutput {
 
     @JsonProperty("@odata.context")
     private String dataContext;
 
-    private CotacaoDia[] value;
+    private ArrayList<CotacaoDia> value;
 
-    public CotacaoDia[] getValue() {
+    public ArrayList<CotacaoDia> getValue() {
         return value;
     }
 
-    public void setValue(CotacaoDia[] value) {
+    public void setValue(ArrayList<CotacaoDia> value) {
         this.value = value;
     }
 
