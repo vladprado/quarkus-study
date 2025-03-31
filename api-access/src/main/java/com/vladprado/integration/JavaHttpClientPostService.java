@@ -3,8 +3,10 @@ package com.vladprado.integration;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+import com.vladprado.model.cnpj.InfoGeralCnpj;
 import com.vladprado.model.cotacao.CotacaoDia;
 import com.vladprado.model.cotacao.CotacaoOutput;
+import com.vladprado.model.ibge.EstadosInfo;
 import jakarta.enterprise.context.ApplicationScoped;
 
 import java.net.URI;
@@ -38,6 +40,34 @@ public class JavaHttpClientPostService {
             throw new RuntimeException(e);
         }
 
+    }
+
+    public InfoGeralCnpj buscaInfoCnpj() {
+        HttpRequest request = HttpRequest.newBuilder()
+                .uri(URI.create("https://receitaws.com.br/v1/cnpj/00000000000191"))
+                .GET()
+                .build();
+
+        try {
+            HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
+            return objectMapper.readValue(response.body(), new TypeReference<InfoGeralCnpj>() {});
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public ArrayList<EstadosInfo> getEstados() {
+        HttpRequest request = HttpRequest.newBuilder()
+                .uri(URI.create("https://servicodados.ibge.gov.br/api/v1/localidades/estados"))
+                .GET()
+                .build();
+
+        try {
+            HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
+            return objectMapper.readValue(response.body(), new TypeReference<ArrayList<EstadosInfo>>() {});
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 
 }
